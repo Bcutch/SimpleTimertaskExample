@@ -1,0 +1,85 @@
+package com.company;
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        Scanner namer = new Scanner(System.in);
+        System.out.println("Please type your name.");
+
+        String name = namer.next();
+        String HelloWorld = "Hello " + name;
+
+        System.out.println();
+        System.out.println(HelloWorld);
+        System.out.println();
+
+        TimerTask repeatedTask = new TimerTask() {
+            public void run() {
+                System.out.println("How was your day?");
+            }
+        };
+
+        Timer timer = new Timer("timer");
+
+        long delay = 3000L;
+        long period = 2000L;
+        timer.scheduleAtFixedRate(repeatedTask, delay, period);
+
+        Thread.sleep(4000L);
+        timer.cancel();
+
+        boolean done = false;
+
+        while (!done) {
+            System.out.println();
+            System.out.println("Please type Good or Bad.");
+
+            name = namer.next();
+
+            if (name.equals("Good")){
+                System.out.println();
+                System.out.println("That's good to hear.");
+                done = true;
+            }
+            else if (name.equals("Bad")){
+                System.out.println();
+                System.out.println("I'm sorry to hear that.");
+                done = true;
+            }
+            else {
+                System.out.println();
+                System.out.println("That's not an option.");
+            }
+        }
+
+        TimerTask repeatedTask2 = new TimerTask() {
+            public void run() {
+                System.out.println("I have to go. Bye.");
+            }
+        };
+
+        Timer timer2 = new Timer("timer");
+
+        timer2.scheduleAtFixedRate(repeatedTask2, delay, period);
+
+        Thread.sleep(4000L);
+        timer2.cancel();
+
+        done = false;
+
+        while (!done) {
+            System.out.println();
+            System.out.println("Say Goodbye.");
+
+            name = namer.next();
+
+            if (name.equals("Goodbye")) {
+                done = true;
+            }
+        }
+
+    }
+}
